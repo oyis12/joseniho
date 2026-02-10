@@ -143,34 +143,34 @@ const Home = () => {
   const posts = [
     {
       id: 1,
-      title: "Draymond Green Had Bizarre...",
+      title: "Great memories...",
       image: "/images/award_press.jpeg",
       date: "27 June, 2020",
       comments: 89,
       excerpt:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. the printing and typesetting industry.",
+        "Great memories are created not only on the pitch but through the smiles, cheers, and shared energy of everyone present. The finale came alive through the spirit of the community that filled the stands.",
       featured: true,
     },
     {
       id: 2,
-      title: "Draymond Green Had Bizarre...",
+      title: "The true magic of the finale...",
       image: "/images/coach1.jpeg",
       date: "27 June, 2020",
       comments: 89,
       excerpt:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. the printing and typesetting industry.",
+        "The true magic of the finale extended beyond the game itself — captured in every smile, every cheer, and every moment shared among supporters and guests.",
       featured: true,
     },
     {
       id: 3,
-      title: "Draymond Green Had Biz...",
+      title: "The finale was more than a game...",
       image: "/images/inmatch_g.jpeg",
       date: "27 June, 2020",
       comments: 89,
     },
     {
       id: 4,
-      title: "Draymond Green Had Bizarre...",
+      title: "The most lasting memories are built together...",
       image: "/images/YFA_team.jpeg",
       date: "27 June, 2020",
       comments: 89,
