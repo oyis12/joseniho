@@ -20,10 +20,6 @@ import sliderImg_2 from "../../../public/images/sliderImg_2.png";
 import sliderImg_3 from "../../../public/images/sliderImg_3.png";
 import sliderImg_4 from "../../../public/images/sliderImg_4.png";
 
-import small_img_1 from "../../../public/images/small_img_1.jpg";
-import small_img_2 from "../../../public/images/small_img_2.jpg";
-import small_img_3 from "../../../public/images/small_img_3.jpg";
-import small_img_4 from "../../../public/images/small_img_4.jpg";
 import { usePlayerStore } from "../../store/usePlayerStore";
 
 const heroSlides = [
