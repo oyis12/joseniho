@@ -197,11 +197,103 @@ const baseMedia = [
     { id: 37, title: "The finale became a celebration shaped by connection and community presence", time: "1 months Ago", date: "2026-01-19", img: "/videos/vd2.mp4" },
   ];
 
+const MOCK_FIXTURES = [
+  {
+      id: 1,
+      stadium: "sport complex arena",
+      date: "April 02, 2026",
+      home: { name: "Camp United.", logo: "/images/team1.png" },
+      away: { 
+        name: "Young Stars Academy.", 
+        logo: "/images/team3.png",
+        about: 'Youngstars Football Academy Established in 2012, Youngstars Football Academy is a youth development Academy base in Abuja, Nigeria, focused on nurturing talent, .... The Academy is a registered corporate organization affiliated with the Abuja Football Association and the Nigeria Football Federation, focused on educating, developing, and promoting young Nigerian footballers. The founder and president is Abdulganiyu Taofeek, also known as "Coach Ola," The Academy has participated in various local and National age-grade championships since its formation.',
+       social: {
+          instagram: "@young_starsfa7642",
+          facebook: "Youngstarsfa",
+          tiktok: "@youngstarsfa"
+        },
+      },
+      bg: "/images/bg-mc3.jpeg",
+    },
+    {
+      id: 2,
+      stadium: "Sport Complex",
+      date: "April 02, 2026",
+      home: {
+        id: 201,
+        name: "Athletic Edge Academy",
+        logo: "/images/team6.png",
+        founded: 2005,
+        stadium: "Athletic Edge Stadium",
+        coach: "John Doe",
+        league: "Youth League",
+      },
+      away: {
+        id: 202,
+        name: "Eagle's Wing Academy",
+        logo: "/images/team7.png",
+        founded: 2010,
+        stadium: "Eagle Wing Stadium",
+        coach: "Jane Smith",
+        league: "Youth League",
+        about:
+          "Eagle’s Wing Sports academy LTD owns and operates professional soccer development center for kids, teenagers and youths who are working towards discovering and developing their passion early. We have engineered a unique system to unleash the sporting potentials of the next generation's emerging football stars, channeling their energies towards a positive influence in the society, encouraging their passion and promoting their dreams.\n\nEagle's Wing Sports Academy LTD is focused on teaching the basic football culture, structure and philosophy to athletes from 2 years of age to the age of 20.",
+        mission:
+          "We are on a mission to unleash the sporting potentials of the next generation's emerging soccer stars, channel the energies of the young stars towards positive influence in the society, encourage passion and promote their dreams.",
+        social: {
+          instagram: "eagle's_wing_football_academy",
+          twitter: "@eagle's wing football academy",
+          facebook: "@eagle's football academy",
+          email: "eagleswingfa@gmail.com",
+          website: "www.eagleswingfa.com",
+        },
+      },
+      bg: "/images/bg-mc3.jpeg",
+    },
+    {
+      id: 3,
+      stadium: "Sport complex",
+      date: "April 02, 2026",
+      home: { 
+        name: "N-Youth Academy.", 
+        logo: "/images/team4.png", 
+        about: "N-Youth Sports Academy (N-YSA) is a professional sports academy dedicated to helping young teenage athletes actualize their dreams in sports while ensuring their academic development and personal growth are fully supported. Established in 2019, N-YSA has consistently groomed student-athletes to excel both academically and athletically, creating a balanced pathway to success on and off the field. Our structured development model produces disciplined, well-educated athletes with clearly defined career pathways in sports and beyond.",
+      social: {
+          instagram: "@nyouthsports",
+          facebook: "N Youth Sports Academy",
+          website: "www.nyouthsports.com",
+          youtube: "N Youth Sports Academy"
+        },
+      },
+      away: { 
+        name: "Destiny Academy.", 
+        logo: "/images/team5.png", 
+        about: "Destiny football academy is a youth development Academy that has a professional and qualified team of coaches who specialize in children’s sport. The Academy is a registered corporate organization affiliated with the Abuja football Association, Established in  2021, DestinyFa is dedicated to contributing to community engagement and the health and well- being of boys and girls from 2years of age to the age of 17.",
+      social: {
+          instagram: "@DestinyFa",
+          twitter: "@eagle's wing football academy",
+          facebook: "Destinyfa",
+          tiktok: "@Destinyfa"
+        },
+      },
+      bg: "/images/bg-mc3.jpeg",
+    },
+    {
+      id: 4,
+      stadium: "Sport Complex",
+      date: "April 02, 2026",
+      home: { name: "Diamat FA-Abuja", logo: "/images/team2.jpeg" },
+      away: { name: "Hawks FC.", logo: "/images/team8.png" },
+      bg: "/images/bg-mc3.jpeg",
+    },
+]
+
 const text = "Joseniho Kids Football League is a vibrant kids football initiative nestled in the heart of Abuja, where we are passionate about nurturing, developing, and celebrating the incredible talent of young footballers. Tailored for players aged 6 to 15, our league provides a dynamic and engaging environment that combines fun with competition, enabling children to master the fundamentals of football while developing essential life skills such as confidence, discipline, and teamwork.Joseninho Kids Football League promises an exhilarating and fulfilling experience for every participant. Our program harmoniously combines skill development with the values of sportsmanship and mentorship, all within a supportive community. Here, football transcends mere play, it becomes a powerful platform for personal growth, character development, and the creation of cherished memories that will last a lifetime."
 
 export const usePlayerStore = create((set, get) => ({
   players: MOCK_API_DATA,
   programs: MOCK_PROGRAMS,
+  fixtures: MOCK_FIXTURES,
   baseMedia: baseMedia,
   aboutText: text,
   selectedPlayer: null,

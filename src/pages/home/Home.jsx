@@ -3,6 +3,16 @@ import Slider from "react-slick";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Table } from "antd";
+import { usePlayerStore } from "../../store/usePlayerStore";
+import {
+  FaInstagram,
+  FaTwitter,
+  FaFacebookF,
+  FaEnvelope,
+  FaGlobe,
+  FaYoutube 
+} from "react-icons/fa";
+import { SiTiktok } from "react-icons/si";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -20,6 +30,10 @@ import sliderImg_2 from "../../../public/images/sliderImg_2.png";
 import sliderImg_3 from "../../../public/images/sliderImg_3.png";
 import sliderImg_4 from "../../../public/images/sliderImg_4.png";
 
+import small_img_1 from "../../../public/images/small_img_1.jpg";
+import small_img_2 from "../../../public/images/small_img_2.jpg";
+import small_img_3 from "../../../public/images/small_img_3.jpg";
+import small_img_4 from "../../../public/images/small_img_4.jpg";
 import { usePlayerStore } from "../../store/usePlayerStore";
 
 const heroSlides = [
@@ -88,6 +102,7 @@ const Home = () => {
   const [current, setCurrent] = useState(0);
   const [hasMounted, setHasMounted] = useState(false);
   const { aboutText } = usePlayerStore();
+  const [selectedTeam, setSelectedTeam] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -100,41 +115,6 @@ const Home = () => {
   useEffect(() => {
     setHasMounted(true);
   }, []);
-
-  const fixtures = [
-    {
-      id: 1,
-      stadium: "sport complex arena",
-      date: "April 02, 2026",
-      home: { name: "Camp United.", logo: "/images/team1.png" },
-      away: { name: "Young Stars Academy.", logo: "/images/team3.png" },
-      bg: "/images/bg-mc3.jpeg",
-    },
-    {
-      id: 2,
-      stadium: "Sport complex",
-      date: "April 02, 2026",
-      home: { name: "Athletic Edge Academy", logo: "/images/team6.png" },
-      away: { name: "Eagle's Wing Academy", logo: "/images/team7.png" },
-      bg: "/images/bg-mc3.jpeg",
-    },
-    {
-      id: 3,
-      stadium: "Sport complex",
-      date: "April 02, 2026",
-      home: { name: "N-Youth Academy.", logo: "/images/team4.png" },
-      away: { name: "Destiny Academy.", logo: "/images/team5.png" },
-      bg: "/images/bg-mc3.jpeg",
-    },
-    {
-      id: 4,
-      stadium: "Sport Complex",
-      date: "April 02, 2026",
-      home: { name: "Diamat FA-Abuja", logo: "/images/team2.jpeg" },
-      away: { name: "Hawks FC.", logo: "/images/team8.png" },
-      bg: "/images/bg-mc3.jpeg",
-    },
-  ];
 
   const posts = [
     {
@@ -265,6 +245,8 @@ const Home = () => {
     },
   };
 
+  const { fixtures } = usePlayerStore();
+
   return (
     <div>
       <div className="-top-16 relative w-full overflow-hidden h-[90vh] sm:h-[85vh] md:h-[90vh] bg-black">
@@ -310,9 +292,9 @@ const Home = () => {
                 {heroSlides[current].subtitle}
               </motion.p>
 
-               <Link
-              to="/contact"
-              className="
+              <Link
+                to="/contact"
+                className="
     relative inline-flex items-center gap-4
     border border-[#97991b]
     text-[#97991b]
@@ -324,26 +306,26 @@ const Home = () => {
     hover:-translate-y-0.5
     group w-fit curosor-pointer
   "
-            >
-              {/* BACKGROUND FILL ANIMATION */}
-              <span
-                className="
+              >
+                {/* BACKGROUND FILL ANIMATION */}
+                <span
+                  className="
       absolute inset-0
       bg-[#97991b]
       -translate-x-full
       group-hover:translate-x-0
       transition-transform duration-300 ease-out
     "
-              />
+                />
 
-              {/* TEXT */}
-              <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
-                {heroSlides[current].cta}
-              </span>
+                {/* TEXT */}
+                <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
+                  {heroSlides[current].cta}
+                </span>
 
-              {/* ARROW */}
-              <span
-                className="
+                {/* ARROW */}
+                <span
+                  className="
       relative z-10
       w-8 h-8
       bg-[#97991b]
@@ -355,11 +337,10 @@ const Home = () => {
       group-hover:text-[#97991b]
       group-hover:translate-x-1
     "
-              >
-                →
-              </span>
-            </Link>
-              
+                >
+                  →
+                </span>
+              </Link>
             </motion.div>
           </motion.div>
         </AnimatePresence>
@@ -404,8 +385,8 @@ const Home = () => {
             <h2 className="text-2xl font-bold uppercase text-[#1C1F42]">
               Featured Teams
             </h2>
-          
-              <Link
+
+            <Link
               to="/"
               className="
               relative inline-flex items-center gap-4
@@ -421,8 +402,8 @@ const Home = () => {
             "
             >
               {/* BACKGROUND FILL ANIMATION */}
-       <span
-        className="
+              <span
+                className="
       absolute inset-0
       bg-[#97991b]
       -translate-x-full
@@ -456,82 +437,260 @@ const Home = () => {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-  {fixtures.map((match) => (
-    <div
-      key={match.id}
-      className="
-        group relative h-[260px]
-        rounded-2xl overflow-hidden
-        shadow-lg hover:shadow-2xl
-        transition-all duration-300
-      "
-    >
-      {/* BACKGROUND IMAGE */}
-      {/* <img
-        src={match.bg}
-        alt=""
-        className="
-          absolute inset-0 w-full h-full object-cover
-          scale-100 group-hover:scale-105
-          transition-transform duration-500
-        "
-      /> */}
+          <div className="max-w-7xl mx-auto px-6 py-12">
+            <AnimatePresence mode="wait">
+              {!selectedTeam ? (
+                /* ================= FIXTURES LIST ================= */
+                <motion.div
+                  key="fixtures"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                >
+                  {fixtures.map((match) => (
+                    <div
+                      key={match.id}
+                      className="group relative h-72 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 bg-white p-6"
+                    >
+                      <div className="flex items-center justify-between h-full">
+                        {/* HOME TEAM */}
+                        <motion.div
+                          layoutId={`team-card-${match.home.id}`}
+                          className="flex flex-col items-center gap-4 w-1/3 cursor-pointer"
+                          onClick={() => setSelectedTeam(match.home)}
+                        >
+                          <motion.img
+                            layoutId={`team-img-${match.home.id}`}
+                            src={match.home.logo}
+                            alt={match.home.name}
+                            className="h-24 w-24 object-contain"
+                          />
+                          <span className="text-sm font-semibold text-center">
+                            {match.home.name}
+                          </span>
+                        </motion.div>
 
-      {/* OVERLAY */}
-      {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" /> */}
+                        {/* VS TEXT */}
+                        <div className="text-xl font-black text-gray-400">
+                          VS
+                        </div>
 
-      {/* CONTENT */}
-      <div className="relative z-10 h-full flex flex-col justify-between p-6 text-black">
-        {/* TOP INFO */}
-        {/* <div className="text-center">
-          <p className="text-xs uppercase tracking-widest text-black">
-            {match.date}
-          </p>
-          <h3 className="text-sm font-semibold mt-1">
-            {match.stadium}
-          </h3>
-        </div> */}
+                        {/* AWAY TEAM */}
+                        <motion.div
+                          layoutId={`team-card-${match.away.id}`}
+                          className="flex flex-col items-center gap-4 w-1/3 cursor-pointer"
+                          onClick={() => setSelectedTeam(match.away)}
+                        >
+                          <motion.img
+                            layoutId={`team-img-${match.away.id}`}
+                            src={match.away.logo}
+                            alt={match.away.name}
+                            className="h-24 w-24 object-contain"
+                          />
+                          <span className="text-sm font-semibold text-center">
+                            {match.away.name}
+                          </span>
+                        </motion.div>
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              ) : (
+                /* ================= TEAM DETAILS VIEW ================= */
+                <motion.div
+                  key="team-details"
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 40 }}
+                  className="py-10"
+                >
+                  {/* BACK BUTTON */}
+                  <button
+                    onClick={() => setSelectedTeam(null)}
+                    className="mb-10 text-sm font-bold uppercase hover:text-blue-600 transition"
+                  >
+                    ← Back to Fixtures
+                  </button>
 
-        {/* TEAMS */}
-        <div className="flex items-center justify-between">
-          {/* HOME */}
-          <div className="flex flex-col items-center gap-2 w-1/3">
-            <img
-              src={match.home.logo}
-              alt={match.home.name}
-              className="h-25 w-25 object-contain"
-            />
-            <span className="text-xs sm:text-sm font-medium text-center">
-              {match.home.name}
-            </span>
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    {/* LOGO */}
+                    <div className="lg:col-span-4">
+                      <motion.img
+                        layoutId={`team-img-${selectedTeam.id}`}
+                        src={selectedTeam.logo}
+                        alt={selectedTeam.name}
+                        className="w-full max-h-100 object-contain"
+                      />
+                    </div>
+
+                    {/* DETAILS */}
+                    <div className="lg:col-span-8">
+                      <h2 className="text-5xl font-black uppercase mb-8">
+                        {selectedTeam.name}
+                      </h2>
+
+                      {/* Core info grid */}
+                      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+                        {selectedTeam.founded && (
+                          <div>
+                            <p className="text-xs text-gray-400 uppercase mb-1">
+                              Founded
+                            </p>
+                            <p className="font-bold text-lg">
+                              {selectedTeam.founded}
+                            </p>
+                          </div>
+                        )}
+                        {selectedTeam.stadium && (
+                          <div>
+                            <p className="text-xs text-gray-400 uppercase mb-1">
+                              Stadium
+                            </p>
+                            <p className="font-bold text-lg">
+                              {selectedTeam.stadium}
+                            </p>
+                          </div>
+                        )}
+                        {selectedTeam.coach && (
+                          <div>
+                            <p className="text-xs text-gray-400 uppercase mb-1">
+                              Coach
+                            </p>
+                            <p className="font-bold text-lg">
+                              {selectedTeam.coach}
+                            </p>
+                          </div>
+                        )}
+                        {selectedTeam.league && (
+                          <div>
+                            <p className="text-xs text-gray-400 uppercase mb-1">
+                              League
+                            </p>
+                            <p className="font-bold text-lg">
+                              {selectedTeam.league}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+
+                      {/* About Section */}
+                      {selectedTeam.about && (
+                        <div className="mb-4">
+                          <h3 className="text-2xl font-black mb-2">About</h3>
+                          <p className="text-gray-600 leading-relaxed whitespace-pre-line">
+                            {selectedTeam.about}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Mission Section */}
+                      {selectedTeam.mission && (
+                        <div className="mt-4">
+                          <h3 className="text-2xl font-black mb-2">Mission</h3>
+                          <p className="text-gray-600 leading-relaxed whitespace-pre-line">
+                            {selectedTeam.mission}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Social Icons */}
+                      {selectedTeam.social && (
+                        <div className="mt-6">
+                          <h3 className="text-2xl font-black mb-4">
+                            Connect with Us
+                          </h3>
+
+                          <motion.div
+                            className="flex gap-6"
+                            initial="hidden"
+                            animate="visible"
+                            variants={{
+                              visible: {
+                                transition: { staggerChildren: 0.15 },
+                              },
+                            }}
+                          >
+                            {Object.entries(selectedTeam.social).map(
+                              ([key, value]) => {
+                                if (!value) return null;
+
+                                let IconComponent;
+                                let color = "text-gray-800";
+
+                                switch (key.toLowerCase()) {
+                                  case "instagram":
+                                    IconComponent = FaInstagram;
+                                    color = "text-pink-500";
+                                    break;
+                                  case "twitter":
+                                    IconComponent = FaTwitter;
+                                    color = "text-blue-400";
+                                    break;
+                                  case "facebook":
+                                    IconComponent = FaFacebookF;
+                                    color = "text-blue-700";
+                                    break;
+                                  case "email":
+                                    IconComponent = FaEnvelope;
+                                    color = "text-gray-800";
+                                    break;
+                                  case "website":
+                                    IconComponent = FaGlobe;
+                                    color = "text-green-600";
+                                    break;
+                                  case "tiktok":
+                                    IconComponent = SiTiktok;
+                                    color = "text-black";
+                                    break;
+                                  case "youtube":
+                                    IconComponent = FaYoutube;
+                                    color = "text-red-600";
+                                    break;
+                                  default:
+                                    return null;
+                                }
+
+                                // Determine href
+                                let href = "#";
+                                if (key === "email") href = `mailto:${value}`;
+                                else if (key === "website")
+                                  href = `https://${value}`;
+                                else if (key === "tiktok")
+                                  href = `https://www.tiktok.com/@${value}`;
+                                else if (key === "youtube")
+                                  href = `https://www.youtube.com/${value}`;
+                                else
+                                  href = `https://${key}.com/${value.replace("@", "")}`;
+
+                                return (
+                                  <motion.a
+                                    key={key}
+                                    href={href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    variants={{
+                                      hidden: { opacity: 0, y: 20 },
+                                      visible: { opacity: 1, y: 0 },
+                                    }}
+                                    whileHover={{ scale: 1.3, rotate: 10 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    className={`${color} text-2xl`}
+                                  >
+                                    <IconComponent />
+                                  </motion.a>
+                                );
+                              },
+                            )}
+                          </motion.div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-
-          {/* VS */}
-          {/* <div className="flex flex-col items-center">
-            <span className="text-xs text-black tracking-widest">
-              MATCH
-            </span>
-            <span className="text-xl font-black tracking-wider">VS</span>
-          </div> */}
-
-          {/* AWAY */}
-          <div className="flex flex-col items-center gap-2 w-1/3">
-            <img
-              src={match.away.logo}
-              alt={match.away.name}
-              className="h-25 w-25 object-contain"
-            />
-            <span className="text-xs sm:text-sm font-medium text-center">
-              {match.away.name}
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  ))}
-</div>
-
         </div>
       </motion.section>
 
@@ -561,9 +720,9 @@ const Home = () => {
                   : aboutText}
               </p>
 
-               <Link
-              to="/about"
-              className="
+              <Link
+                to="/about"
+                className="
     relative inline-flex items-center gap-4
     border border-[#97991b]
     text-[#97991b]
@@ -575,26 +734,26 @@ const Home = () => {
     hover:-translate-y-0.5
     group
   "
-            >
-              {/* BACKGROUND FILL ANIMATION */}
-              <span
-                className="
+              >
+                {/* BACKGROUND FILL ANIMATION */}
+                <span
+                  className="
       absolute inset-0
       bg-[#97991b]
       -translate-x-full
       group-hover:translate-x-0
       transition-transform duration-300 ease-out
     "
-              />
+                />
 
-              {/* TEXT */}
-              <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
-                Learn More
-              </span>
+                {/* TEXT */}
+                <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
+                  Learn More
+                </span>
 
-              {/* ARROW */}
-              <span
-                className="
+                {/* ARROW */}
+                <span
+                  className="
       relative z-10
       w-8 h-8
       bg-[#97991b]
@@ -606,10 +765,10 @@ const Home = () => {
       group-hover:text-[#97991b]
       group-hover:translate-x-1
     "
-              >
-                →
-              </span>
-            </Link>
+                >
+                  →
+                </span>
+              </Link>
             </div>
           </div>
         </div>
