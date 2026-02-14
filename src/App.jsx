@@ -14,13 +14,14 @@ import PlayersInfo from "./pages/players/PlayersInfo";
 import Mediapage from "./pages/media/Mediapage";
 import Blogpage from "./pages/blog/Blogpage";
 import Contactpage from "./pages/contact/Contactpage";
+import SocialMediaFloatingMenu from "./components/socialmedial/SocialMediaFloatingMenu";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <ScrollToTop />
+    <SocialMediaFloatingMenu />
       <Navbar />
-
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
