@@ -157,7 +157,7 @@ const Home = () => {
           <motion.div key="home-content" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             
             {/* HERO SECTION */}
-            <div className="-top-16 relative w-full overflow-hidden h-[90vh] sm:h-[85vh] md:h-[90vh] bg-black">
+            <div className="-top-16 relative w-full overflow-hidden h-[89vh] sm:h-[85vh] md:h-[90vh] bg-black">
               <AnimatePresence>
                 <motion.div key={current} className="absolute inset-0 w-full h-full" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2, ease: "easeInOut" }}>
                   <div className="absolute inset-0 bg-cover bg-center scale-105" style={{ backgroundImage: `url(${heroSlides[current].image})` }} />
@@ -191,7 +191,7 @@ const Home = () => {
             {/* BREAKING NEWS TICKER - INTEGRATED FROM OLD CODE */}
             {breakingNews.length > 0 && (
               <div 
-                className="sticky top-0 z-50 bg-[#97991b] h-14 flex items-center overflow-hidden border-b-4 border-orange-500 shadow-2xl"
+                className="sticky top-0 z-50 bg-[#97991b] h-18 flex items-center overflow-hidden border-b-4 border-orange-500 shadow-2xl"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
               >
@@ -858,8 +858,7 @@ const Home = () => {
         </button>
       <button
           onClick={() => setSelectedPost(null)}
-                          className="flex items-center cursor-pointer gap-2 font-black uppercase text-xs text-[#1C1F42] hover:text-[#97991b] mb-8 transition-colors"
-                        >
+          className="flex items-center cursor-pointer gap-2 font-black uppercase text-xs text-[#1C1F42] hover:text-[#97991b] mb-8 transition-colors" >
           <HiOutlineArrowLeft /> Back to Feed
        </button>
                        
