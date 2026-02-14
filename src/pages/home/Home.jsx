@@ -13,6 +13,9 @@ import {
   FaYoutube,
   FaHandshake
 } from "react-icons/fa";
+import {
+  FiArrowRight,
+} from "react-icons/fi";
 import { 
   HiOutlineArrowLeft, 
   HiOutlineCalendar, 
@@ -321,12 +324,24 @@ const Home = () => {
                           <span className="text-sm font-semibold text-center">
                             {match.home.name}
                           </span>
+                         <button
+                            onClick={() => setSelectedTeam(match.home)}
+                            className="relative inline-flex items-center gap-3 border border-[#97991b] text-[#97991b] px-4 py-1 text-xs font-bold rounded-full overflow-hidden transition-all duration-300"
+                         >
+                            <span className="absolute inset-0 bg-[#97991b] -translate-x-full  transition-transform duration-300 ease-out" />
+                            <span className="relative z-10 transition-colors duration-300  cursor-pointer">
+                                Learn more
+                            </span>
+                             <span className="relative z-10 w-6 h-6 bg-[#97991b] text-white rounded-full flex items-center justify-center">
+                             <FiArrowRight size={12} />
+                             </span>
+                          </button>
                         </motion.div>
 
                         {/* VS TEXT */}
-                        <div className="text-xl font-black text-gray-400">
+                        {/* <div className="text-xl font-black text-gray-400">
                           VS
-                        </div>
+                        </div> */}
 
                         {/* AWAY TEAM */}
                         <motion.div
@@ -343,6 +358,18 @@ const Home = () => {
                           <span className="text-sm font-semibold text-center">
                             {match.away.name}
                           </span>
+                         <button
+                            onClick={() => setSelectedTeam(match.away)}
+                            className="relative inline-flex items-center gap-3 border border-[#97991b] text-[#97991b] px-4 py-1 text-xs font-bold rounded-full overflow-hidden transition-all duration-300"
+                         >
+                            <span className="absolute inset-0 bg-[#97991b] -translate-x-full transition-transform duration-300 ease-out" />
+                            <span className="relative z-10 transition-colors  cursor-pointer">
+                                Learn more
+                            </span>
+                             <span className="relative z-10 w-6 h-6 bg-[#97991b] text-white rounded-full flex items-center justify-center">
+                             <FiArrowRight size={12} />
+                             </span>
+                          </button>
                         </motion.div>
                       </div>
                     </div>
