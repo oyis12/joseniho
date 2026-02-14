@@ -675,7 +675,7 @@ const Home = () => {
             </Slider>
           </div>
         </div>
-              <div>
+       <div>
           <div
             className='
             bg-[url("/images/bg_bannerArea.jpg")]
@@ -705,8 +705,84 @@ const Home = () => {
           </div>
         </div>
 
+        {/* PARTNERS SECTION WHICH SHOULD BE A VERY BEAUTIFUL SLIDER SHOWCASING OUR PARTNERS (LOGOS + SHORT DESCRIPTION) */}
+  
+{/* PARTNERS SECTION */}
+        <section className="py-12 bg-slate-50 overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-8">
+              <motion.span 
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="text-[#97991b] font-black uppercase tracking-widest text-xs"
+              >
+                Our Network
+              </motion.span>
+              <h2 className="text-2xl md:text-3xl font-black text-[#1C1F42] uppercase mt-1">
+                Official Partners
+              </h2>
+              <div className="w-16 h-1 bg-[#97991b] mx-auto mt-3 rounded-full" />
+            </div>
 
-                <section className="py-16 bg-white max-w-7xl mx-auto px-6">
+            <Slider 
+              {...{
+                dots: false,
+                infinite: true,
+                speed: 4000,
+                slidesToShow: 4,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 0,
+                cssEase: "linear",
+                pauseOnHover: true,
+                arrows: false,
+                responsive: [
+                  { breakpoint: 1024, settings: { slidesToShow: 3 } },
+                  { breakpoint: 768, settings: { slidesToShow: 2 } },
+                  { breakpoint: 480, settings: { slidesToShow: 1 } },
+                ],
+              }}
+            >
+              {[
+                { name: "TANTITA Security Service Limited", desc: "Official Partner", logo: "/images/partner.jpeg" },
+                // { name: "Gatorade", desc: "Hydration Partner", logo: "/images/partner.jpeg" },
+                // { name: "Grassroot Soccer", desc: "Youth Development", logo: "/images/partner.jpeg" },
+                // { name: "Global Health", desc: "Medical Support", logo: "/images/partner.jpeg" },
+                // { name: "TechBall", desc: "Data & Analytics", logo: "/images/partner.jpeg" },
+              ].map((partner, index) => (
+                <div key={index} className="px-3">
+                  <motion.div 
+                    whileHover={{ y: -5 }}
+                    className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm transition-all duration-300 flex flex-col items-center text-center group"
+                  >
+                    {/* Removed grayscale, set opacity high (80%) to keep it clean but vibrant */}
+                    <div className="h-16 w-full flex items-center justify-center mb-4 opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                      <img 
+                        src={partner.logo} 
+                        alt={partner.name} 
+                        className="max-h-full max-w-[120px] object-contain"
+                        onError={(e) => { e.target.src = "https://via.placeholder.com/150?text=Logo" }}
+                      />
+                    </div>
+                    
+                    {/* Title - ensures original color and no wrap */}
+                    <h4 className="text-sm font-bold text-[#1C1F42] mb-0.5 truncate w-full px-1">
+                      {partner.name}
+                    </h4>
+                    
+                    {/* Description - tight tracking and ellipsis to prevent box breaking */}
+                    <p className="text-[10px] text-[#97991b] font-medium uppercase tracking-tighter whitespace-nowrap overflow-hidden text-ellipsis w-full">
+                      {partner.desc}
+                    </p>
+                  </motion.div>
+                </div>
+              ))}
+            </Slider>
+          </div>
+        </section>
+
+
+      <section className="py-16 bg-white max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-2xl font-bold  uppercase text-[#1C1F42]">
               News & Media Gallery
