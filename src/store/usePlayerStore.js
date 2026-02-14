@@ -5,10 +5,10 @@ import { FaFutbol, FaRunning, FaBullseye, FaUserFriends } from 'react-icons/fa';
 import { GiAwareness } from "react-icons/gi";
 
 const MOCK_API_DATA = [
-  { id: 1, name: "Member of the league", team: "First Team", number: "22", role: "Forward", nationality: "American", dob: "25/02/1988", height: "190cm", weight: "90kg", img: "/images/p1.jpeg", stats: { attack: 10, defence: 95, kick: 88 } },
-  { id: 2, name: "Member of the league", team: "Under 21s", number: "34", role: "Goalkeeper", nationality: "British", dob: "12/05/2003", height: "185cm", weight: "80kg", img: "/images/p2.jpeg", stats: { attack: 5, defence: 82, kick: 75 } },
-  { id: 3, name: "Member of the league", team: "First Team", number: "04", role: "Defender", nationality: "Spanish", dob: "10/10/1995", height: "188cm", weight: "85kg", img: "/images/p3.jpeg", stats: { attack: 45, defence: 90, kick: 60 } },
-  { id: 4, name: "Member of the league", team: "First Team", number: "10", role: "Defender", nationality: "French", dob: "22/01/1994", height: "180cm", weight: "78kg", img: "/images/forth.jpeg", stats: { attack: 55, defence: 85, kick: 70 } },
+  { id: 1, name: "Member of the league", team: "First Team", number: "22", role: "NA", nationality: "Nigerian", dob: "N/A", height: "190cm", weight: "90kg", img: "/images/p1.jpeg", stats: { attack: 10, defence: 95, kick: 88 } },
+  { id: 2, name: "Member of the league", team: "Under 21s", number: "34", role: "NA", nationality: "Nigerian", dob: "N/A", height: "185cm", weight: "80kg", img: "/images/p2.jpeg", stats: { attack: 5, defence: 82, kick: 75 } },
+  { id: 3, name: "Member of the league", team: "First Team", number: "04", role: "NA", nationality: "Nigerian", dob: "N/A", height: "188cm", weight: "85kg", img: "/images/p3.jpeg", stats: { attack: 45, defence: 90, kick: 60 } },
+  { id: 4, name: "Member of the league", team: "First Team", number: "10", role: "NA", nationality: "Nigerian", dob: "N/A", height: "180cm", weight: "78kg", img: "/images/forth.jpeg", stats: { attack: 55, defence: 85, kick: 70 } },
 ];
 
 const MOCK_PROGRAMS = [
@@ -38,11 +38,6 @@ As a leading indigenous security solutions provider known for protecting critica
 A representative of the company will be present at the opening ceremony to reaffirm Tantita’s commitment to youth empowerment through sports and emphasize football’s unique role in instilling discipline, teamwork, resilience, and social cohesion among children.
 
 Organizers of the Joseniho Kids Football League described the partnership as a landmark achievement ahead of the second edition, noting that the collaboration will enhance opportunities for participating academies and further professionalize the league’s operations.
-
-**Opening Ceremony Details:**
-- **Date:** Sunday, 15th February 2026
-- **Time:** 2:00 PM
-- **Venue:** Ace Turf, 3rd Avenue, Gwarimpa
 
 The event is expected to draw parents, football enthusiasts, community leaders, and supporters of youth development as the second edition officially kicks off.`,
 featured: true,
