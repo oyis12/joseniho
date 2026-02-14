@@ -931,7 +931,7 @@ const Home = () => {
                 </motion.div>
                 <div>
                   <p className="text-[10px] font-black uppercase text-[#97991b] mb-1 tracking-widest">Start Time</p>
-                  <p className="text-lg font-bold text-[#1C1F42]">{selectedPost.time || '09:00 AM'}</p>
+                  <p className="text-lg font-bold text-[#1C1F42]">{selectedPost.time || '2:00 PM'}</p>
                 </div>
               </motion.div>
 
@@ -942,7 +942,7 @@ const Home = () => {
                 </motion.div>
                 <div>
                   <p className="text-[10px] font-black uppercase text-[#97991b] mb-1 tracking-widest">Location</p>
-                  <p className="text-lg font-bold text-[#1C1F42]">{selectedPost.venue || 'Main Stadium'}</p>
+                  <p className="text-lg font-bold text-[#1C1F42]">{selectedPost.venue || 'ACE football pitch,Gwarimpa, 3rd Avenue Abuja'}</p>
                 </div>
               </motion.div>
             </div>

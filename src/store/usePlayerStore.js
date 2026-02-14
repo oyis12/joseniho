@@ -23,10 +23,10 @@ const MOCK_PROGRAMS = [
 const MOCK_NEWS = [
   { 
     id: 1, 
-    title: "Tantita Security Services to Be Unveiled as Official Partner at Kick-Off", 
+    title: "TANTITA SECURITY SERVICES TO BE UNVEILED AS AN OFFICIAL PARTNER AT JOSENIHO KICK-OFF 2026",
     tag: "Breaking News",
     author: "Admin", 
-    date: "14 Feb, 2026", 
+    date: "15 Feb, 2026",
     image: "/images/breaking.jpeg",
     excerpt: "In a significant development for grassroots football, TSSNL will be unveiled as the Official Partner...",
     content: `In a significant development for grassroots football in Nigeria, Tantita Security Services Nigeria Limited (TSSNL) will be officially unveiled as the Official Partner of the Joseniho Kids Football League during the kick-off ceremony of the league’s second edition.
