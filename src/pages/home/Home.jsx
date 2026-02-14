@@ -1,8 +1,8 @@
+
 import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Table } from "antd";
 import { usePlayerStore } from "../../store/usePlayerStore";
 import {
   FaInstagram,
@@ -10,31 +10,31 @@ import {
   FaFacebookF,
   FaEnvelope,
   FaGlobe,
-  FaYoutube 
+  FaYoutube,
 } from "react-icons/fa";
+import { 
+  HiOutlineArrowLeft, 
+  HiOutlineCalendar, 
+  HiOutlineClock, 
+  HiOutlineLocationMarker, 
+  HiOutlineInformationCircle 
+} from 'react-icons/hi';
 import { SiTiktok } from "react-icons/si";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { Row, Col, Typography, Divider, Button } from "antd";
 import {
   LeftOutlined,
   RightOutlined,
   CalendarOutlined,
-  MessageOutlined,
+  MessageOutlined
 } from "@ant-design/icons";
 
 import sliderImg_1 from "../../../public/images/sliderImg_1.png";
 import sliderImg_2 from "../../../public/images/sliderImg_2.png";
 import sliderImg_3 from "../../../public/images/sliderImg_3.png";
 import sliderImg_4 from "../../../public/images/sliderImg_4.png";
-
-import small_img_1 from "../../../public/images/small_img_1.jpg";
-import small_img_2 from "../../../public/images/small_img_2.jpg";
-import small_img_3 from "../../../public/images/small_img_3.jpg";
-import small_img_4 from "../../../public/images/small_img_4.jpg";
-import { usePlayerStore } from "../../store/usePlayerStore";
 
 const heroSlides = [
   {
@@ -57,106 +57,69 @@ const heroSlides = [
   },
 ];
 
-//const { Title, Text, Link } = Typography;
+const slides = [
+  {
+    title: "Coaches",
+    description: "Meet our qualified and passionate coaches dedicated to developing young talent on and off the pitch.",
+    image: sliderImg_2,
+  },
+  {
+    title: "Awards",
+    description: "We Celebrate achievements, milestones, and outstanding performances across all teams.",
+    image: sliderImg_1,
+  },
+  {
+    title: "Our Teams",
+    description: "Discover our age group teams, built to nurture skill, teamwork, and competitive excellence",
+    image: sliderImg_4,
+  },
+  {
+    title: "Rules",
+    description: "We have clear guidelines that promote discipline, fairness, safety, and respect for everyone involved.",
+    image: sliderImg_3,
+  },
+];
 
-/* ================= ARROWS (FIXED) ================= */
-const NextArrow = ({ onClick }) => {
-  return (
-    <div
-      onClick={onClick}
-      className="
-        absolute right-2 md:-right-10
-        top-1/2 -translate-y-1/2
-        z-20 bg-[#1f2226]
-        w-10 h-10 mr-10
-        flex items-center justify-center
-        cursor-pointer hover:bg-[#1C1F42]! transition
+/* ================= ARROWS ================= */
+const NextArrow = ({ onClick }) => (
+  <div onClick={onClick} className="absolute right-2 md:-right-10 top-1/2 -translate-y-1/2 z-20 bg-[#1f2226] w-10 h-10 mr-10 flex items-center justify-center cursor-pointer hover:bg-[#1C1F42] transition text-white">
+    <RightOutlined />
+  </div>
+);
 
-      "
-    >
-      <RightOutlined />
-    </div>
-  );
-};
-
-const PrevArrow = ({ onClick }) => {
-  return (
-    <div
-      onClick={onClick}
-      className="
-        absolute left-2 md:-left-10
-        top-1/2 -translate-y-1/2
-        z-20 bg-[#1f2226]
-        w-10 h-10 ml-10
-        flex items-center justify-center
-        cursor-pointer hover:bg-[#1C1F42]! transition
-      "
-    >
-      <LeftOutlined />
-    </div>
-  );
-};
-/* ================================================ */
+const PrevArrow = ({ onClick }) => (
+  <div onClick={onClick} className="absolute left-2 md:-left-10 top-1/2 -translate-y-1/2 z-20 bg-[#1f2226] w-10 h-10 ml-10 flex items-center justify-center cursor-pointer hover:bg-[#1C1F42] transition text-white">
+    <LeftOutlined />
+  </div>
+);
 
 const Home = () => {
   const [current, setCurrent] = useState(0);
-  const [hasMounted, setHasMounted] = useState(false);
-  const { aboutText } = usePlayerStore();
+  const { aboutText, news, fixtures } = usePlayerStore();
   const [selectedTeam, setSelectedTeam] = useState(null);
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % heroSlides.length);
     }, 7000);
-
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
+  const breakingNews = news.filter((p) => p.tag?.toLowerCase() === "breaking news");
+  const featuredPosts = news.filter((p) => p.featured);
+  const smallPosts = news.filter((p) => !p.featured);
 
-  const posts = [
-    {
-      id: 1,
-      title: "Great memories...",
-      image: "/images/award_press.jpeg",
-      date: "27 June, 2020",
-      comments: 89,
-      excerpt:
-        "Great memories are created not only on the pitch but through the smiles, cheers, and shared energy of everyone present. The finale came alive through the spirit of the community that filled the stands.",
-      featured: true,
-    },
-    {
-      id: 2,
-      title: "The true magic of the finale...",
-      image: "/images/coach1.jpeg",
-      date: "27 June, 2020",
-      comments: 89,
-      excerpt:
-        "The true magic of the finale extended beyond the game itself — captured in every smile, every cheer, and every moment shared among supporters and guests.",
-      featured: true,
-    },
-    {
-      id: 3,
-      title: "The finale was more than a game...",
-      image: "/images/inmatch_g.jpeg",
-      date: "27 June, 2020",
-      comments: 89,
-    },
-    {
-      id: 4,
-      title: "The most lasting memories are built together...",
-      image: "/images/YFA_team.jpeg",
-      date: "27 June, 2020",
-      comments: 89,
-    },
-  ];
+  const iconVariants = {
+    hover: { 
+      scale: 1.2, 
+      color: "#97991b",
+      transition: { type: "spring", stiffness: 300 } 
+    }
+  };
 
-  const featuredPosts = posts.filter((p) => p.featured);
-  const smallPosts = posts.filter((p) => !p.featured);
-
-  const desktopSettings = {
+    const desktopSettings = {
     infinite: true,
     speed: 500,
     slidesToShow: 4,
@@ -166,14 +129,9 @@ const Home = () => {
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
-      {
-        breakpoint: 1280,
-        settings: { slidesToShow: 3 },
-      },
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: 2 },
-      },
+      { breakpoint: 1280, settings: { slidesToShow: 3 },  },
+      { breakpoint: 1024, settings: { slidesToShow: 2 }, },
+      { breakpoint: 640, settings: { slidesToShow: 1, arrows: false, dots: true } },
     ],
   };
 
@@ -187,190 +145,83 @@ const Home = () => {
     swipeToSlide: true,
   };
 
-  const slides = [
-    {
-      title: "Coaches",
-      description:
-        "Meet our qualified and passionate coaches dedicated to developing young talent on and off the pitch.",
-      image: sliderImg_2,
-    },
-    {
-      title: "Awards",
-      description:
-        "We Celebrate achievements, milestones, and outstanding performances across all teams.",
-      image: sliderImg_1,
-    },
-    {
-      title: "Our Teams",
-      description:
-        "Discover our age group teams, built to nurture skill, teamwork, and competitive excellence",
-      image: sliderImg_4,
-    },
-    {
-      title: "Rules",
-      description:
-        "We have clear guidelines that promote discipline, fairness, safety, and respect for everyone involved.",
-      image: sliderImg_3,
-    },
-  ];
 
-  const textContainer = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.4,
-      },
-    },
-  };
-
-  const textItem = {
-    hidden: { opacity: 0, y: 40 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
-
-  const sectionVariant = {
-    hidden: { opacity: 0, y: 40 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const { fixtures } = usePlayerStore();
+  const textContainer = { show: { transition: { staggerChildren: 0.2, delayChildren: 0.4 } } };
+  const textItem = { hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } };
+  const sectionVariant = { hidden: { opacity: 0, y: 40 }, show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } } };
 
   return (
-    <div>
-      <div className="-top-16 relative w-full overflow-hidden h-[90vh] sm:h-[85vh] md:h-[90vh] bg-black">
-        <AnimatePresence>
-          <motion.div
-            key={current}
-            className="absolute inset-0 w-full h-full"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
-            style={{ zIndex: 1 }}
-          >
-            {/* BACKGROUND IMAGE */}
-            <div
-              className="absolute inset-0 bg-cover bg-center scale-105"
-              style={{
-                backgroundImage: `url(${heroSlides[current].image})`,
-              }}
-            />
+    <div className="bg-white">
+      <AnimatePresence mode="wait">
+        {!selectedPost ? (
+          <motion.div key="home-content" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+            
+            {/* HERO SECTION */}
+            <div className="-top-16 relative w-full overflow-hidden h-[90vh] sm:h-[85vh] md:h-[90vh] bg-black">
+              <AnimatePresence>
+                <motion.div key={current} className="absolute inset-0 w-full h-full" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 1.2, ease: "easeInOut" }}>
+                  <div className="absolute inset-0 bg-cover bg-center scale-105" style={{ backgroundImage: `url(${heroSlides[current].image})` }} />
+                  <div className="absolute inset-0 bg-black/55" />
+                  <motion.div className="absolute inset-0 flex flex-col justify-center px-6 md:px-16 lg:px-32 text-white max-w-3xl" variants={textContainer} initial="hidden" animate="show">
+                    <motion.h1 variants={textItem} className="text-3xl md:text-5xl font-bold mb-4">{heroSlides[current].title}</motion.h1>
+                    <motion.p variants={textItem} className="text-lg md:text-2xl mb-6 text-slate-200">{heroSlides[current].subtitle}</motion.p>
+                    <Link to="/contact" className="relative inline-flex items-center gap-4 border border-[#97991b] text-[#97991b] px-6 py-1 text-sm font-semibold rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_8px_25px_rgba(151,153,27,0.35)] hover:-translate-y-0.5 group w-fit cursor-pointer">
+                      <span className="absolute inset-0 bg-[#97991b] -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out" />
+                      <span className="relative z-10 transition-colors duration-300 group-hover:text-white">{heroSlides[current].cta}</span>
+                      <span className="relative z-10 w-8 h-8 bg-[#97991b] text-white rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:text-[#97991b] group-hover:translate-x-1">→</span>
+                    </Link>
+                  </motion.div>
+                </motion.div>
+              </AnimatePresence>
 
-            {/* OVERLAY */}
-            <div className="absolute inset-0 bg-black/55" />
+              {/* INDICATOR DOTS */}
+              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-full max-w-md px-6 z-20">
+                <div className="flex justify-between items-center text-white text-sm mb-3">
+                  <span className="font-semibold">{String(current + 1).padStart(2, "0")}</span>
+                  <span className="opacity-60">{String(heroSlides.length).padStart(2, "0")}</span>
+                </div>
+                <div className="flex gap-3">
+                  {heroSlides.map((_, i) => (
+                    <div key={i} onClick={() => setCurrent(i)} className={`flex-1 cursor-pointer transition-all duration-500 ${current === i ? "h-1 bg-orange-500" : "h-0.5 bg-white/40 hover:bg-white/70"}`} />
+                  ))}
+                </div>
+              </div>
+            </div>
 
-            {/* CONTENT */}
-            <motion.div
-              className="absolute inset-0 flex flex-col justify-center px-6 md:px-16 lg:px-32 text-white max-w-3xl"
-              variants={textContainer}
-              initial="hidden"
-              animate="show"
-            >
-              <motion.h1
-                variants={textItem}
-                className="text-3xl md:text-5xl font-bold mb-4"
+            {/* BREAKING NEWS TICKER - INTEGRATED FROM OLD CODE */}
+            {breakingNews.length > 0 && (
+              <div 
+                className="sticky top-0 z-50 bg-[#97991b] h-14 flex items-center overflow-hidden border-b-4 border-orange-500 shadow-2xl"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
               >
-                {heroSlides[current].title}
-              </motion.h1>
+                <div className="bg-black text-white px-8 h-full flex items-center font-black italic tracking-tighter z-10 shadow-[5px_0_15px_rgba(0,0,0,0.5)]">
+                  BREAKING NEWS
+                </div>
+                <div className="flex-1 overflow-hidden flex items-center">
+                  <motion.div 
+                    className="flex whitespace-nowrap gap-32 items-center"
+                    animate={isPaused ? { x: undefined } : { x: ["100%", "-100%"] }}
+                    transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+                  >
+                    {breakingNews.map((news) => (
+                      <div key={news.id} className="flex items-center gap-6 text-white font-bold uppercase text-sm tracking-wide">
+                        <span className="text-yellow-400">●</span>
+                        <span>{news.title}</span>
+                        <button 
+                          onClick={() => setSelectedPost(news)}
+                          className="bg-white text-[#97991b] cursor-pointer px-4 py-2 rounded-full text-xs font-black uppercase hover:bg-[#97991b] hover:border-orange-500 border-2 hover:text-white transition"
+                        >
+                          READ MORE
+                        </button>
+                      </div>
+                    ))}
+                  </motion.div>
+                </div>
+              </div>
+            )}
 
-              <motion.p
-                variants={textItem}
-                className="text-lg md:text-2xl mb-6 text-slate-200"
-              >
-                {heroSlides[current].subtitle}
-              </motion.p>
-
-              <Link
-                to="/contact"
-                className="
-    relative inline-flex items-center gap-4
-    border border-[#97991b]
-    text-[#97991b]
-    px-6 py-1 text-sm font-semibold
-    rounded-full
-    overflow-hidden
-    transition-all duration-300
-    hover:shadow-[0_8px_25px_rgba(151,153,27,0.35)]
-    hover:-translate-y-0.5
-    group w-fit curosor-pointer
-  "
-              >
-                {/* BACKGROUND FILL ANIMATION */}
-                <span
-                  className="
-      absolute inset-0
-      bg-[#97991b]
-      -translate-x-full
-      group-hover:translate-x-0
-      transition-transform duration-300 ease-out
-    "
-                />
-
-                {/* TEXT */}
-                <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
-                  {heroSlides[current].cta}
-                </span>
-
-                {/* ARROW */}
-                <span
-                  className="
-      relative z-10
-      w-8 h-8
-      bg-[#97991b]
-      text-white
-      rounded-full
-      flex items-center justify-center
-      transition-all duration-300
-      group-hover:bg-white
-      group-hover:text-[#97991b]
-      group-hover:translate-x-1
-    "
-                >
-                  →
-                </span>
-              </Link>
-            </motion.div>
-          </motion.div>
-        </AnimatePresence>
-
-        {/* INDICATOR */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-full max-w-md px-6 z-20">
-          <div className="flex justify-between items-center text-white text-sm mb-3">
-            <span className="font-semibold">
-              {String(current + 1).padStart(2, "0")}
-            </span>
-            <span className="opacity-60">
-              {String(heroSlides.length).padStart(2, "0")}
-            </span>
-          </div>
-
-          <div className="flex gap-3">
-            {heroSlides.map((_, i) => (
-              <div
-                key={i}
-                onClick={() => setCurrent(i)}
-                className={`flex-1 cursor-pointer transition-all duration-500 ${
-                  current === i
-                    ? "h-1 bg-orange-500"
-                    : "h-0.5 bg-white/40 hover:bg-white/70"
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
+            {/* FEATURED TEAMS SECTION */}
 
       <motion.section
         variants={sectionVariant}
@@ -404,12 +255,12 @@ const Home = () => {
               {/* BACKGROUND FILL ANIMATION */}
               <span
                 className="
-      absolute inset-0
-      bg-[#97991b]
-      -translate-x-full
-      group-hover:translate-x-0
-      transition-transform duration-300 ease-out
-    "
+                  absolute inset-0
+                  bg-[#97991b]
+                  -translate-x-full
+                  group-hover:translate-x-0
+                  transition-transform duration-300 ease-out
+                "
               />
 
               {/* TEXT */}
@@ -420,17 +271,17 @@ const Home = () => {
               {/* ARROW */}
               <span
                 className="
-      relative z-10
-      w-8 h-8
-      bg-[#97991b]
-      text-white
-      rounded-full
-      flex items-center justify-center
-      transition-all duration-300
-      group-hover:bg-white
-      group-hover:text-[#97991b]
-      group-hover:translate-x-1
-    "
+                    relative z-10
+                    w-8 h-8
+                    bg-[#97991b]
+                    text-white
+                    rounded-full
+                    flex items-center justify-center
+                    transition-all duration-300
+                    group-hover:bg-white
+                    group-hover:text-[#97991b]
+                    group-hover:translate-x-1
+                  "
               >
                 →
               </span>
@@ -694,6 +545,8 @@ const Home = () => {
         </div>
       </motion.section>
 
+
+   {/* ABOUT US SECTION */}
       <section className="relative h-120 w-full overflow-hidden mb-5">
         {/* Background Image */}
         <div className="absolute inset-0 bg-[url('/images/about-bg.jpg')] bg-cover bg-right" />
@@ -774,8 +627,8 @@ const Home = () => {
         </div>
       </section>
 
-      <div className="">
-        {/* ================= DESKTOP SLIDER ================= */}
+   <div>
+          {/* ================= DESKTOP SLIDER ================= */}
         <div className="hidden md:flex bg-[#1C1F42] h-120 items-center justify-center text-white py-12 overflow-hidden">
           <div className="relative max-w-7xl mx-auto px-6 w-full">
             <Slider {...desktopSettings}>
@@ -798,8 +651,7 @@ const Home = () => {
             </Slider>
           </div>
         </div>
-
-        {/* ================= MOBILE SLIDER ================= */}
+          {/* ================= MOBILE SLIDER ================= */}
         <div className="md:hidden bg-[#1C1F42] text-white py-12 overflow-hidden">
           <div className="px-4">
             <Slider {...mobileSettings}>
@@ -823,8 +675,7 @@ const Home = () => {
             </Slider>
           </div>
         </div>
-
-        <div>
+              <div>
           <div
             className='
             bg-[url("/images/bg_bannerArea.jpg")]
@@ -854,61 +705,37 @@ const Home = () => {
           </div>
         </div>
 
-        <section className="py-16 bg-white max-w-7xl mx-auto px-6">
+
+                <section className="py-16 bg-white max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-2xl font-bold  uppercase text-[#1C1F42]">
               News & Media Gallery
             </h2>
-            {/* <Link
-              to="/blog"
-              className="
-    relative inline-flex items-center gap-2
-    bg-[#97991b] text-white
-    px-7 py-3 text-sm font-semibold
-    rounded-full
-    overflow-hidden
-    group
-  "
-            >
-              <span className="relative z-10">View All</span>
-              <span className="relative z-10 group-hover:translate-x-1 transition">
-                →
-              </span>
-
-          
-              <span
-                className="
-    absolute right-0 top-0 h-full w-5
-    bg-[#1C1F42]
-    clip-path-[polygon(100%_0,0_50%,100%_100%)]
-  "
-              />
-            </Link> */}
 
             <Link
               to="/blog"
               className="
-    relative inline-flex items-center gap-4
-    border border-[#97991b]
-    text-[#97991b]
-    px-6 py-1 text-sm font-semibold
-    rounded-full
-    overflow-hidden
-    transition-all duration-300
-    hover:shadow-[0_8px_25px_rgba(151,153,27,0.35)]
-    hover:-translate-y-0.5
-    group
-  "
+                relative inline-flex items-center gap-4
+                border border-[#97991b]
+                text-[#97991b]
+                px-6 py-1 text-sm font-semibold
+                rounded-full
+                overflow-hidden
+                transition-all duration-300
+                hover:shadow-[0_8px_25px_rgba(151,153,27,0.35)]
+                hover:-translate-y-0.5
+                group
+              "
             >
               {/* BACKGROUND FILL ANIMATION */}
               <span
                 className="
-      absolute inset-0
-      bg-[#97991b]
-      -translate-x-full
-      group-hover:translate-x-0
-      transition-transform duration-300 ease-out
-    "
+                  absolute inset-0
+                  bg-[#97991b]
+                  -translate-x-full
+                  group-hover:translate-x-0
+                  transition-transform duration-300 ease-out
+                "
               />
 
               {/* TEXT */}
@@ -919,17 +746,17 @@ const Home = () => {
               {/* ARROW */}
               <span
                 className="
-      relative z-10
-      w-8 h-8
-      bg-[#97991b]
-      text-white
-      rounded-full
-      flex items-center justify-center
-      transition-all duration-300
-      group-hover:bg-white
-      group-hover:text-[#97991b]
-      group-hover:translate-x-1
-    "
+                  relative z-10
+                  w-8 h-8
+                  bg-[#97991b]
+                  text-white
+                  rounded-full
+                  flex items-center justify-center
+                  transition-all duration-300
+                  group-hover:bg-white
+                  group-hover:text-[#97991b]
+                  group-hover:translate-x-1
+                "
               >
                 →
               </span>
@@ -957,10 +784,10 @@ const Home = () => {
                           <CalendarOutlined className="text-red-500" />
                           {post.date}
                         </span>
-                        <span className="flex items-center gap-1">
+                        {/* <span className="flex items-center gap-1">
                           <MessageOutlined className="text-red-500" />
                           {post.comments} Comments
-                        </span>
+                        </span> */}
                       </div>
 
                       <p className="text-gray-600 text-sm leading-relaxed">
@@ -969,7 +796,7 @@ const Home = () => {
                     </div>
 
                     <Link
-                      to="/team/media"
+                      to="/blog"
                       className="mt-6 w-10 h-10 bg-[#97991b]! text-white flex items-center justify-center rounded hover:bg-red-700 transition"
                     >
                       ↗
@@ -998,10 +825,10 @@ const Home = () => {
                           <CalendarOutlined className="text-red-500" />
                           {smallPosts[index].date}
                         </span>
-                        <span className="flex items-center gap-1">
+                        {/* <span className="flex items-center gap-1">
                           <MessageOutlined className="text-red-500" />
                           {smallPosts[index].comments} Comments
-                        </span>
+                        </span> */}
                       </div>
                     </div>
                   </div>
@@ -1010,7 +837,120 @@ const Home = () => {
             ))}
           </div>
         </section>
+
+   </div>
+
+          </motion.div>
+        ) : (
+
+    <motion.div 
+      key="news-detail" 
+      className="min-h-screen bg-slate-50 py-12 md:py-20" 
+      initial={{ opacity: 0, x: 100 }} 
+      animate={{ opacity: 1, x: 0 }} 
+      exit={{ opacity: 0, x: -100 }}
+    >
+      <div className="max-w-5xl mx-auto px-6">
+        {/* Back Button */}
+        <button 
+          onClick={() => setSelectedPost(null)} 
+          className="mb-8 flex items-center gap-2 font-bold text-[#1C1F42] hover:text-[#97991b] transition-colors group"
+        >
+          <HiOutlineArrowLeft className="group-hover:-translate-x-1 transition-transform" /> 
+          BACK TO FEED
+        </button>
+
+        {/* Main Content Container (Shadow removed per request) */}
+        <div className="bg-white rounded-3xl overflow-hidden border border-slate-200">
+          
+          <div className="p-8 md:p-16">
+            {/* Header Area */}
+            <div className="mb-8">
+              <span className="bg-red-700 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 inline-block">
+                {selectedPost.tag}
+              </span>
+              <h1 className="text-4xl md:text-6xl font-black text-[#1C1F42] leading-tight">
+                {selectedPost.title}
+              </h1>
+            </div>
+
+            {/* Editorial Content: Image floating inside text */}
+            <div className="block">
+              {/* The Image Float Box */}
+              <div className="float-left mr-8 mb-6 w-full md:w-1/2">
+                <div className="rounded-2xl overflow-hidden border border-slate-100">
+                   <img 
+                    src={selectedPost.image} 
+                    className="w-full h-auto object-contain hover:scale-105 transition-transform duration-700" 
+                    alt={selectedPost.title} 
+                  />
+                </div>
+                <p className="mt-2 text-xs text-gray-400 italic">Featured Image: {selectedPost.title}</p>
+              </div>
+
+              {/* The Paragraphs */}
+              <div className="text-lg text-gray-600 leading-relaxed whitespace-pre-line prose prose-slate">
+                {selectedPost.content || selectedPost.excerpt}
+              </div>
+              
+              {/* Clearfix to ensure the bottom section stays below the floated image */}
+              <div className="clear-both"></div>
+            </div>
+          </div>
+
+          {/* Bottom Section: Opening Ceremony Details */}
+          <div className="bg-slate-50 p-8 md:p-12 border-t border-slate-200">
+            <div className="flex items-center gap-3 mb-10">
+              <div className="p-2 bg-white rounded-lg border border-slate-200 shadow-sm">
+                <HiOutlineInformationCircle className="text-2xl text-[#1C1F42]" />
+              </div>
+              <h3 className="text-xl font-bold text-[#1C1F42] uppercase tracking-widest">
+                Opening Ceremony Details
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
+              {/* Date Item */}
+              <motion.div whileHover="hover" className="flex items-center gap-5 cursor-default group">
+                <motion.div variants={iconVariants} className="text-4xl text-slate-300">
+                  <HiOutlineCalendar />
+                </motion.div>
+                <div>
+                  <p className="text-[10px] font-black uppercase text-[#97991b] mb-1 tracking-widest">Event Date</p>
+                  <p className="text-lg font-bold text-[#1C1F42]">{selectedPost.date || 'TBA'}</p>
+                </div>
+              </motion.div>
+
+              {/* Time Item */}
+              <motion.div whileHover="hover" className="flex items-center gap-5 cursor-default group">
+                <motion.div variants={iconVariants} className="text-4xl text-slate-300">
+                  <HiOutlineClock />
+                </motion.div>
+                <div>
+                  <p className="text-[10px] font-black uppercase text-[#97991b] mb-1 tracking-widest">Start Time</p>
+                  <p className="text-lg font-bold text-[#1C1F42]">{selectedPost.time || '09:00 AM'}</p>
+                </div>
+              </motion.div>
+
+              {/* Venue Item */}
+              <motion.div whileHover="hover" className="flex items-center gap-5 cursor-default group">
+                <motion.div variants={iconVariants} className="text-4xl text-slate-300">
+                  <HiOutlineLocationMarker />
+                </motion.div>
+                <div>
+                  <p className="text-[10px] font-black uppercase text-[#97991b] mb-1 tracking-widest">Location</p>
+                  <p className="text-lg font-bold text-[#1C1F42]">{selectedPost.venue || 'Main Stadium'}</p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+        </div>
       </div>
+    </motion.div>
+
+        )}
+      </AnimatePresence>
     </div>
   );
 };

@@ -94,7 +94,7 @@ const Blog = () => {
                   >
                     <div className="relative overflow-hidden aspect-video">
                       <img
-                        src={item.img}
+                        src={item.image}
                         alt={item.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
@@ -113,10 +113,10 @@ const Blog = () => {
                         <span className="flex items-center gap-1">
                           <FiUser className="text-slate-400" /> {item.author}
                         </span>
-                        <span className="flex items-center gap-1">
+                        {/* <span className="flex items-center gap-1">
                           <FiMessageSquare className="text-slate-400" />{" "}
                           {item.commentsCount}
-                        </span>
+                        </span> */}
                         <span className="flex items-center gap-1">
                           <FiClock className="text-slate-400" /> {item.timeAgo}
                         </span>
@@ -221,7 +221,7 @@ const Blog = () => {
                   <FiChevronLeft /> Back to News
                 </button>
                 <img
-                  src={selectedNews.img}
+                  src={selectedNews.image}
                   alt=""
                   className="w-full aspect-video object-cover mb-8 shadow-lg"
                 />
@@ -229,7 +229,7 @@ const Blog = () => {
                 <div className="flex flex-wrap items-center gap-6 text-[10px] font-black text-slate-400 uppercase border-b border-slate-100 pb-6 mb-6">
                   <span className="flex items-center gap-2"><FiUser className="text-[#97991b]" /> {selectedNews.author}</span>
                   <span className="flex items-center gap-2"><FiClock className="text-[#97991b]" /> {selectedNews.fullDate}</span>
-                  <span className="flex items-center gap-2"><FiMessageSquare className="text-[#97991b]" /> {selectedNews.commentsCount} Comments</span>
+                  {/* <span className="flex items-center gap-2"><FiMessageSquare className="text-[#97991b]" /> {selectedNews.commentsCount} Comments</span> */}
                   <button className="ml-auto flex items-center gap-2 hover:text-[#97991b] transition-colors"><FiShare2 /> Share</button>
                 </div>
 
@@ -260,7 +260,7 @@ const Blog = () => {
                     {news.slice(0, 3).map((post) => (
                       <div key={post.id} className="flex gap-4 group cursor-pointer" onClick={() => setSelectedNews(post)}>
                         <div className="w-16 h-16 flex-shrink-0 overflow-hidden bg-slate-100">
-                          <img src={post.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
+                          <img src={post.image} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
                         </div>
                         <h5 className="font-black text-[#1C1F42] text-xs group-hover:text-[#97991b] transition-colors uppercase leading-snug">
                           {post.title}

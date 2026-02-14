@@ -1,4 +1,5 @@
 
+
 import { create } from 'zustand';
 import { FaFutbol, FaRunning, FaBullseye, FaUserFriends } from 'react-icons/fa';
 import { GiAwareness } from "react-icons/gi";
@@ -11,149 +12,75 @@ const MOCK_API_DATA = [
 ];
 
 const MOCK_PROGRAMS = [
-  { 
-    title: "Technical Skills", 
-    description: "Ball control, passing accuracy, dribbling, and finishing fundamentals.",
-    icon: 'FaFutbol', // Store as string to avoid component issues in state
-    img: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800" 
-  },
-  { 
-    title: "Speed Training", 
-    description: "Improving acceleration, agility, and quick movement on and off the ball.",
-    icon: 'FaRunning', 
-    img: "images/speed.jpg" 
-  },
-  { 
-    title: "Tactical Awareness", 
-    description: "Understanding positioning, decision-making, and game intelligence.",
-    icon: 'GiAwareness', 
-    img: "https://images.unsplash.com/photo-1551958219-acbc608c6377?q=80&w=1600" 
-  },
-  { 
-    title: "Physical Conditioning", 
-    description: "Building strength, endurance, balance, and overall fitness safely.",
-    icon: 'FaBullseye', 
-    img: "images/training.jpg" 
-  },
-  { 
-    title: "Mental Strength", 
-    description: "Developing confidence, focus, discipline, and resilience under pressure.",
-    icon: 'FaBullseye', 
-    img: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?q=80&w=800" 
-  },
-  { 
-    title: "Team Play", 
-    description: "Encouraging communication, cooperation, leadership, and sportsmanship.",
-    icon: 'FaUserFriends', 
-    img: "/images/teamplay.jpeg" 
-  },
+  { title: "Technical Skills", description: "Ball control, passing accuracy, dribbling, and finishing fundamentals.", icon: 'FaFutbol', img: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800" },
+  { title: "Speed Training", description: "Improving acceleration, agility, and quick movement on and off the ball.", icon: 'FaRunning', img: "images/speed.jpg" },
+  { title: "Tactical Awareness", description: "Understanding positioning, decision-making, and game intelligence.", icon: 'GiAwareness', img: "https://images.unsplash.com/photo-1551958219-acbc608c6377?q=80&w=1600" },
+  { title: "Physical Conditioning", description: "Building strength, endurance, balance, and overall fitness safely.", icon: 'FaBullseye', img: "images/training.jpg" },
+  { title: "Mental Strength", description: "Developing confidence, focus, discipline, and resilience under pressure.", icon: 'FaBullseye', img: "https://images.unsplash.com/photo-1518604666860-9ed391f76460?q=80&w=800" },
+  { title: "Team Play", description: "Encouraging communication, cooperation, leadership, and sportsmanship.", icon: 'FaUserFriends', img: "/images/teamplay.jpeg" },
 ];
 
 const MOCK_NEWS = [
   { 
     id: 1, 
-    title: "France FC Open To Serie A Return", 
-    author: "Thomas Wills", 
-    date: "06 June", 
-    fullDate: "Oct 12, 2021",
-    commentsCount: 125, 
-    timeAgo: "1 Day ago", 
-    category: "Transfer",
-    img: "images/egles_mvp.jpeg",
-    excerpt: "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-    content: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia..."
+    title: "Tantita Security Services to Be Unveiled as Official Partner at Kick-Off", 
+    tag: "Breaking News",
+    author: "Admin", 
+    date: "14 Feb, 2026", 
+    image: "/images/breaking.jpeg",
+    excerpt: "In a significant development for grassroots football, TSSNL will be unveiled as the Official Partner...",
+    content: `In a significant development for grassroots football in Nigeria, Tantita Security Services Nigeria Limited (TSSNL) will be officially unveiled as the Official Partner of the Joseniho Kids Football League during the kick-off ceremony of the league’s second edition.
+
+The unveiling will form a major highlight of the opening event, reinforcing the growing credibility and national appeal of the fast-rising youth football competition dedicated to discovering, nurturing, and developing young football talents.
+
+As a leading indigenous security solutions provider known for protecting critical national infrastructure and championing community-driven initiatives, TSSNL’s partnership is expected to provide vital logistical support, operational backing, and strategic resources to further strengthen the league’s structure and expand its impact.
+
+A representative of the company will be present at the opening ceremony to reaffirm Tantita’s commitment to youth empowerment through sports and emphasize football’s unique role in instilling discipline, teamwork, resilience, and social cohesion among children.
+
+Organizers of the Joseniho Kids Football League described the partnership as a landmark achievement ahead of the second edition, noting that the collaboration will enhance opportunities for participating academies and further professionalize the league’s operations.
+
+**Opening Ceremony Details:**
+- **Date:** Sunday, 15th February 2026
+- **Time:** 2:00 PM
+- **Venue:** Ace Turf, 3rd Avenue, Gwarimpa
+
+The event is expected to draw parents, football enthusiasts, community leaders, and supporters of youth development as the second edition officially kicks off.`,
+featured: true,
   },
-  { 
-    id: 2, 
-    title: "Ireland FC In 10 Racking", 
-    author: "Thomas Wills", 
-    date: "16 June", 
-    fullDate: "Oct 12, 2021",
-    commentsCount: 125, 
-    timeAgo: "1 Day ago", 
-    category: "Match Report",
-    img: "images/YFA_team.jpeg",
-    excerpt: "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-    content: "Ireland dominated the qualification round with an impressive display of tactical discipline..."
-  },
-  { 
-    id: 3, 
-    title: "Brazil Win 3-0 against Argentina", 
-    author: "Thomas Wills", 
-    date: "06 June", 
-    fullDate: "Oct 12, 2021",
-    commentsCount: 125, 
-    timeAgo: "1 Day ago", 
-    category: "International",
-    img: "images/trophy_lift.jpeg",
-    excerpt: "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-    content: "A masterclass performance led by the veteran forwards secured a comfortable victory..."
-  },
-    { 
-    id: 4, 
-    title: "Ireland FC In 10 Racking", 
-    author: "Thomas Wills", 
-    date: "16 June", 
-    fullDate: "Oct 12, 2021",
-    commentsCount: 125, 
-    timeAgo: "1 Day ago", 
-    category: "Match Report",
-    img: "images/YFA_team.jpeg",
-    excerpt: "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-    content: "Ireland dominated the qualification round with an impressive display of tactical discipline..."
-  },
-    { 
-    id: 5, 
-    title: "France FC Open To Serie A Return", 
-    author: "Thomas Wills", 
-    date: "06 June", 
-    fullDate: "Oct 12, 2021",
-    commentsCount: 125, 
-    timeAgo: "1 Day ago", 
-    category: "Transfer",
-    img: "images/egles_mvp.jpeg",
-    excerpt: "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-    content: "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia..."
-  },
-  { 
-    id: 6, 
-    title: "Ireland FC In 10 Racking", 
-    author: "Thomas Wills", 
-    date: "16 June", 
-    fullDate: "Oct 12, 2021",
-    commentsCount: 125, 
-    timeAgo: "1 Day ago", 
-    category: "Match Report",
-    img: "images/YFA_team.jpeg",
-    excerpt: "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-    content: "Ireland dominated the qualification round with an impressive display of tactical discipline..."
-  },
-  { 
-    id: 7, 
-    title: "Brazil Win 3-0 against Argentina", 
-    author: "Thomas Wills", 
-    date: "06 June", 
-    fullDate: "Oct 12, 2021",
-    commentsCount: 125, 
-    timeAgo: "1 Day ago", 
-    category: "International",
-    img: "images/trophy_lift.jpeg",
-    excerpt: "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-    content: "A masterclass performance led by the veteran forwards secured a comfortable victory..."
-  },
-    { 
-    id: 8, 
-    title: "Ireland FC In 10 Racking", 
-    author: "Thomas Wills", 
-    date: "16 June", 
-    fullDate: "Oct 12, 2021",
-    commentsCount: 125, 
-    timeAgo: "1 Day ago", 
-    category: "Match Report",
-    img: "images/YFA_team.jpeg",
-    excerpt: "Lorem Ipsum is simply dummy text of the printing and typesetting industry...",
-    content: "Ireland dominated the qualification round with an impressive display of tactical discipline..."
-  },
+ {
+      id: 2,
+      title: "Great memories...",
+      image: "/images/award_press.jpeg",
+      date: "27 June, 2020",
+      comments: 89,
+      excerpt:
+        "Great memories are created not only on the pitch but through the smiles, cheers, and shared energy of everyone present. The finale came alive through the spirit of the community that filled the stands.",
+      featured: true,
+    },
+    {
+      id: 3,
+      title: "The true magic of the finale...",
+      image: "/images/coach1.jpeg",
+      date: "27 June, 2020",
+      comments: 89,
+      excerpt:
+        "The true magic of the finale extended beyond the game itself — captured in every smile, every cheer, and every moment shared among supporters and guests.",
+      featured: true,
+    },
+    {
+      id: 4,
+      title: "The finale was more than a game...",
+      image: "/images/inmatch_g.jpeg",
+      date: "27 June, 2020",
+      comments: 89,
+    },
+    {
+      id: 5,
+      title: "The most lasting memories are built together...",
+      image: "/images/YFA_team.jpeg",
+      date: "27 June, 2020",
+      comments: 89,
+    },
 ];
 
 const baseMedia = [
@@ -197,7 +124,7 @@ const baseMedia = [
     { id: 37, title: "The finale became a celebration shaped by connection and community presence", time: "1 months Ago", date: "2026-01-19", img: "/videos/vd2.mp4" },
   ];
 
-const MOCK_FIXTURES = [
+  const MOCK_FIXTURES = [
   {
       id: 1,
       stadium: "sport complex arena",
@@ -287,26 +214,29 @@ const MOCK_FIXTURES = [
       bg: "/images/bg-mc3.jpeg",
     },
 ]
-
-const text = "Joseniho Kids Football League is a vibrant kids football initiative nestled in the heart of Abuja, where we are passionate about nurturing, developing, and celebrating the incredible talent of young footballers. Tailored for players aged 6 to 15, our league provides a dynamic and engaging environment that combines fun with competition, enabling children to master the fundamentals of football while developing essential life skills such as confidence, discipline, and teamwork.Joseninho Kids Football League promises an exhilarating and fulfilling experience for every participant. Our program harmoniously combines skill development with the values of sportsmanship and mentorship, all within a supportive community. Here, football transcends mere play, it becomes a powerful platform for personal growth, character development, and the creation of cherished memories that will last a lifetime."
+const text = "Joseniho Kids Football League is a vibrant kids football initiative nestled in the heart of Abuja, where we are passionate about nurturing, developing, and celebrating the incredible talent of young footballers...";
 
 export const usePlayerStore = create((set, get) => ({
   players: MOCK_API_DATA,
   programs: MOCK_PROGRAMS,
   fixtures: MOCK_FIXTURES,
   baseMedia: baseMedia,
+  news: MOCK_NEWS,
   aboutText: text,
-  selectedPlayer: null,
-  filterRole: "All",
+  selectedNews: null,
   currentPage: 1,
   itemsPerPage: 8,
+  selectedPlayer: null,
+  filterRole: "All",
+  newsPage: 1,
+  newsPerPage: 6,
 
-  setSelectedPlayer: (player) => set({ selectedPlayer: player }),
+
+ setSelectedPlayer: (player) => set({ selectedPlayer: player }),
   setFilterRole: (role) => set({ filterRole: role, currentPage: 1 }),
   setCurrentPage: (page) => set({ currentPage: page }),
 
-  // Logic to get filtered and paginated data
-  getProcessedData: () => {
+    getProcessedData: () => {
     const { players, filterRole, currentPage, itemsPerPage } = get();
     
     // 1. Filter
@@ -326,10 +256,6 @@ export const usePlayerStore = create((set, get) => ({
     };
   },
 
-  news: MOCK_NEWS,
-  selectedNews: null,
-  newsPage: 1,
-  newsPerPage: 6,
 
   setSelectedNews: (news) => set({ selectedNews: news }),
   setNewsPage: (page) => set({ newsPage: page }),
