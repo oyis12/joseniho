@@ -11,6 +11,7 @@ import {
   FaEnvelope,
   FaGlobe,
   FaYoutube,
+  FaHandshake
 } from "react-icons/fa";
 import { 
   HiOutlineArrowLeft, 
@@ -988,7 +989,7 @@ const Home = () => {
               </h3>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-4 gap-10">
               {/* Date Item */}
               <motion.div whileHover="hover" className="flex items-center gap-5 cursor-default group">
                 <motion.div variants={iconVariants} className="text-4xl text-slate-300">
@@ -1018,7 +1019,24 @@ const Home = () => {
                 </motion.div>
                 <div>
                   <p className="text-[10px] font-black uppercase text-[#97991b] mb-1 tracking-widest">Location</p>
-                  <p className="text-lg font-bold text-[#1C1F42]">{selectedPost.venue || 'ACE football pitch,Gwarimpa, 3rd Avenue Abuja'}</p>
+                  <p className="text-sm font-bold text-[#1C1F42]">{selectedPost.venue || 'ACE football pitch,Gwarimpa, 3rd Avenue Abuja'}</p>
+                </div>
+              </motion.div>
+
+            {/* Partner Logo */}
+              <motion.div whileHover="hover" className="flex items-center gap-5 cursor-default group">
+                <motion.div variants={iconVariants} className="text-4xl text-slate-300">
+                  <FaHandshake />
+                </motion.div>
+                <div>
+                   <div className="h-16 w-full items-center justify-center mb-4">
+                    <p className="text-[10px] font-black uppercase text-[#97991b] mb-2 tracking-widest">Partner</p>
+                      <img 
+                        src="/images/partner.jpeg"
+                        className="max-h-full max-w-[120px] object-contain"
+                        onError={(e) => { e.target.src = "https://via.placeholder.com/150?text=Logo" }}
+                      />
+                    </div>
                 </div>
               </motion.div>
             </div>
