@@ -17,7 +17,7 @@ import {
   HiOutlineCalendar, 
   HiOutlineClock, 
   HiOutlineLocationMarker, 
-  HiOutlineInformationCircle 
+  HiOutlineInformationCircle,
 } from 'react-icons/hi';
 import { SiTiktok } from "react-icons/si";
 
@@ -853,12 +853,16 @@ const Home = () => {
       <div className="max-w-5xl mx-auto px-6">
         {/* Back Button */}
         <button 
-          onClick={() => setSelectedPost(null)} 
           className="mb-8 flex items-center gap-2 font-bold text-[#1C1F42] hover:text-[#97991b] transition-colors group"
         >
-          <HiOutlineArrowLeft className="group-hover:-translate-x-1 transition-transform" /> 
-          BACK TO FEED
         </button>
+      <button
+          onClick={() => setSelectedPost(null)}
+                          className="flex items-center cursor-pointer gap-2 font-black uppercase text-xs text-[#1C1F42] hover:text-[#97991b] mb-8 transition-colors"
+                        >
+          <HiOutlineArrowLeft /> Back to Feed
+       </button>
+                       
 
         {/* Main Content Container (Shadow removed per request) */}
         <div className="bg-white rounded-3xl overflow-hidden border border-slate-200">
