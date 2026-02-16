@@ -8,7 +8,10 @@ const MOCK_API_DATA = [
   { id: 1, name: "Member of the league", team: "First Team", number: "22", role: "NA", nationality: "Nigerian", dob: "N/A", height: "190cm", weight: "90kg", img: "/images/p1.jpeg", stats: { attack: 10, defence: 95, kick: 88 } },
   { id: 2, name: "Member of the league", team: "Under 21s", number: "34", role: "NA", nationality: "Nigerian", dob: "N/A", height: "185cm", weight: "80kg", img: "/images/p2.jpeg", stats: { attack: 5, defence: 82, kick: 75 } },
   { id: 3, name: "Member of the league", team: "First Team", number: "04", role: "NA", nationality: "Nigerian", dob: "N/A", height: "188cm", weight: "85kg", img: "/images/p3.jpeg", stats: { attack: 45, defence: 90, kick: 60 } },
-  { id: 4, name: "Member of the league", team: "First Team", number: "10", role: "NA", nationality: "Nigerian", dob: "N/A", height: "180cm", weight: "78kg", img: "/images/forth.jpeg", stats: { attack: 55, defence: 85, kick: 70 } },
+  { id: 4, name: "Member of the league", team: "First Team", number: "10", role: "NA", nationality: "Nigerian", dob: "N/A", height: "180cm", weight: "78kg", img: "/images/p4.jpeg", stats: { attack: 55, defence: 85, kick: 70 } },
+  { id: 5, name: "Member of the league", team: "First Team", number: "15", role: "NA", nationality: "Nigerian", dob: "N/A", height: "178cm", weight: "75kg", img: "/images/p5.jpeg", stats: { attack: 60, defence: 80, kick: 75 } },
+  { id: 6, name: "Member of the league", team: "First Team", number: "20", role: "NA", nationality: "Nigerian", dob: "N/A", height: "175cm", weight: "72kg", img: "/images/p6.jpeg", stats: { attack: 40, defence: 75, kick: 65 } },
+  { id: 7, name: "Member of the league", team: "First Team", number: "10", role: "NA", nationality: "Nigerian", dob: "N/A", height: "180cm", weight: "78kg", img: "/images/p7.jpeg", stats: { attack: 55, defence: 85, kick: 70 } },
 ];
 
 const MOCK_PROGRAMS = [
@@ -76,6 +79,32 @@ featured: true,
       date: "2 Feb, 2025",
       comments: 89,
     },
+    {
+  id: 6,
+  title: "JOSENIHO Kids Football League 2026 Officially Kicks Off",
+  tag: "Breaking News",
+  author: "Admin",
+  date: "15 Feb, 2026",
+  image: "",
+  excerpt:
+    "The highly anticipated JOSENIHO Kids Football League 2026 has officially kicked off, marking the start of a new season focused on youth development, sportsmanship, and community engagement.",
+  content: `
+The highly anticipated OSENIHO Kids Football League  2026 officially kicked off yesterday, marking the beginning of an exciting season dedicated to youth development, sportsmanship, and community engagement.
+
+The opening ceremony brought together young talents, parents, supporters, and football enthusiasts to celebrate the power of sports in nurturing discipline, teamwork, confidence, and character among children.
+
+The kickoff match delivered impressive performances from the participating teams, setting a strong and competitive tone for what promises to be a vibrant league season.
+
+Beyond competition, the league continues to serve as a structured platform for young athletes to grow, develop their football skills, and express their passion for the game in a supportive and well-organized environment.
+
+Fans and supporters are encouraged to stay connected for match highlights, league updates, and upcoming fixtures as the season progresses.
+
+Watch the official kickoff match here
+  `,
+  featured: false,
+  links: "https://www.youtube.com/watch?t=3310&v=Z9JMRfb85rY&feature=youtu.be",
+}
+
 ];
 
 const baseMedia = [
@@ -117,6 +146,7 @@ const baseMedia = [
     { id: 35, title: "Great memories were created both on the pitch and through the energy of everyone present.", time: "1 months Ago", date: "2026-01-26", img: "/videos/vd3.mp4" },
     { id: 36, title: "The true magic of the finale lived in every smile, cheer, and shared moment.", time: "1 months Ago", date: "2026-01-20", img: "/videos/vd1.mp4" },
     { id: 37, title: "The finale became a celebration shaped by connection and community presence", time: "1 months Ago", date: "2026-01-19", img: "/videos/vd2.mp4" },
+    { id: 38, title: " JOSENIHO Kids Football League 2026 officially kicked off", time: "1 day Ago", date: "2026-02-16", img: "/videos/vd4.mp4" },
   ];
 
   const MOCK_FIXTURES = [
@@ -233,13 +263,11 @@ export const usePlayerStore = create((set, get) => ({
 
     getProcessedData: () => {
     const { players, filterRole, currentPage, itemsPerPage } = get();
-    
-    // 1. Filter
+  
     const filtered = filterRole === "All" 
       ? players 
       : players.filter(p => p.role === filterRole);
 
-    // 2. Paginate
     const totalPages = Math.ceil(filtered.length / itemsPerPage);
     const startIndex = (currentPage - 1) * itemsPerPage;
     const paginated = filtered.slice(startIndex, startIndex + itemsPerPage);

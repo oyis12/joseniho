@@ -995,11 +995,23 @@ const Home = () => {
                 <p className="mt-2 text-xs text-gray-400 italic">Featured Image: {selectedPost.title}</p>
               </div>
 
-              {/* The Paragraphs */}
               <div className="text-lg text-gray-600 leading-relaxed whitespace-pre-line prose prose-slate">
                 {selectedPost.content || selectedPost.excerpt}
-              </div>
-              
+
+                {selectedPost.links && (
+                  <div className="mt-6">
+                    <a
+                      href={selectedPost.links}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-red-600 font-semibold hover:underline"
+                    >
+                      ▶ Watch the official kickoff match
+                    </a>
+                  </div>
+                )}
+            </div>
+                          
               {/* Clearfix to ensure the bottom section stays below the floated image */}
               <div className="clear-both"></div>
             </div>
