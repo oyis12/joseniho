@@ -87,7 +87,7 @@ featured: true,
   date: "15 Feb, 2026",
   image: "",
   excerpt:
-    "The highly anticipated JOSENIHO Kids Football League 2026 has officially kicked off, marking the start of a new season focused on youth development, sportsmanship, and community engagement.",
+    "TANTITA SECURITY SERVICES HAS BEEN UNVEILED AS AN OFFICIAL PARTNER AT JOSENIHO KICK-OFF 2026",
   content: `
 The highly anticipated OSENIHO Kids Football League  2026 officially kicked off yesterday, marking the beginning of an exciting season dedicated to youth development, sportsmanship, and community engagement.
 

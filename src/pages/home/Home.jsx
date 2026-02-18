@@ -193,7 +193,7 @@ const Home = () => {
             </div>
 
             {/* BREAKING NEWS TICKER - INTEGRATED FROM OLD CODE */}
-            {breakingNews.length > 0 && (
+            {/* {breakingNews.length > 0 && (
               <div 
                 className="sticky top-0 z-50 bg-[#97991b] h-18 flex items-center overflow-hidden border-b-4 border-orange-500 shadow-2xl"
                 onMouseEnter={() => setIsPaused(true)}
@@ -206,7 +206,7 @@ const Home = () => {
                   <motion.div 
                     className="flex whitespace-nowrap gap-32 items-center"
                     animate={isPaused ? { x: undefined } : { x: ["100%", "-100%"] }}
-                    transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
+                    transition={{ repeat: Infinity, duration: 12, ease: "linear" }}
                   >
                     {breakingNews.map((news) => (
                       <div key={news.id} className="flex items-center gap-6 text-white font-bold uppercase text-sm tracking-wide">
@@ -223,7 +223,48 @@ const Home = () => {
                   </motion.div>
                 </div>
               </div>
-            )}
+            )} */}
+        {breakingNews.length > 0 && (
+  <div 
+    className="sticky top-0 z-50 bg-[#97991b] h-18 flex items-center overflow-hidden border-b-4 border-orange-500 shadow-2xl"
+    onMouseEnter={() => setIsPaused(true)}
+    onMouseLeave={() => setIsPaused(false)}
+  >
+    <div className="bg-black text-white px-8 h-full flex items-center font-black italic tracking-tighter z-10 shadow-[5px_0_15px_rgba(0,0,0,0.5)]">
+      BREAKING NEWS
+    </div>
+    <div className="flex-1 overflow-hidden flex items-center">
+      <motion.div 
+        className="flex whitespace-nowrap gap-32 items-center"
+        /* We use a ternary here to freeze the animation. 
+           'initial' is set to false so it doesn't restart when re-rendering.
+        */
+        initial={false}
+        animate={isPaused ? {} : { x: ["0%", "-50%"] }} 
+        transition={{ 
+          repeat: Infinity, 
+          duration: 10, // FAST SPEED: change to 8 for faster, 12 for slower
+          ease: "linear" 
+        }}
+      >
+        {/* We double the news to create a seamless infinite loop */}
+        {[...breakingNews, ...breakingNews].map((news, index) => (
+          <div key={`${news.id}-${index}`} className="flex items-center gap-6 text-white font-bold uppercase text-sm tracking-wide">
+            <span className="text-yellow-400">●</span>
+            <span>{news.title}</span>
+            <button 
+              onClick={() => setSelectedPost(news)}
+              className="bg-white text-[#97991b] cursor-pointer px-4 py-2 rounded-full text-xs font-black uppercase hover:bg-[#97991b] hover:border-orange-500 border-2 hover:text-white transition"
+            >
+              READ MORE
+            </button>
+          </div>
+        ))}
+      </motion.div>
+    </div>
+  </div>
+)}
+           
 
             {/* FEATURED TEAMS SECTION */}
 
