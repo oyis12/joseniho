@@ -24,27 +24,48 @@ const MOCK_PROGRAMS = [
 ];
 
 const MOCK_NEWS = [
-  { 
-    id: 1, 
-    title: "TANTITA SECURITY SERVICES TO BE UNVEILED AS AN OFFICIAL PARTNER AT JOSENIHO KICK-OFF 2026",
-    tag: "Breaking News",
-    author: "Admin", 
-    date: "15 Feb, 2026",
-    image: "/images/breaking.jpeg",
-    excerpt: "In a significant development for grassroots football, TSSNL will be unveiled as the Official Partner...",
-    content: `In a significant development for grassroots football in Nigeria, Tantita Security Services Nigeria Limited (TSSNL) will be officially unveiled as the Official Partner of the Joseniho Kids Football League during the kick-off ceremony of the league’s second edition.
+//   { 
+//     id: 1, 
+//     title: "TANTITA SECURITY SERVICES TO BE UNVEILED AS AN OFFICIAL PARTNER AT JOSENIHO KICK-OFF 2026",
+//     tag: "Breaking News",
+//     author: "Admin", 
+//     date: "15 Feb, 2026",
+//     image: "/images/breaking.jpeg",
+//     excerpt: "In a significant development for grassroots football, TSSNL will be unveiled as the Official Partner...",
+//     content: `In a significant development for grassroots football in Nigeria, Tantita Security Services Nigeria Limited (TSSNL) will be officially unveiled as the Official Partner of the Joseniho Kids Football League during the kick-off ceremony of the league’s second edition.
 
-The unveiling will form a major highlight of the opening event, reinforcing the growing credibility and national appeal of the fast-rising youth football competition dedicated to discovering, nurturing, and developing young football talents.
+// The unveiling will form a major highlight of the opening event, reinforcing the growing credibility and national appeal of the fast-rising youth football competition dedicated to discovering, nurturing, and developing young football talents.
 
-As a leading indigenous security solutions provider known for protecting critical national infrastructure and championing community-driven initiatives, TSSNL’s partnership is expected to provide vital logistical support, operational backing, and strategic resources to further strengthen the league’s structure and expand its impact.
+// As a leading indigenous security solutions provider known for protecting critical national infrastructure and championing community-driven initiatives, TSSNL’s partnership is expected to provide vital logistical support, operational backing, and strategic resources to further strengthen the league’s structure and expand its impact.
 
-A representative of the company will be present at the opening ceremony to reaffirm Tantita’s commitment to youth empowerment through sports and emphasize football’s unique role in instilling discipline, teamwork, resilience, and social cohesion among children.
+// A representative of the company will be present at the opening ceremony to reaffirm Tantita’s commitment to youth empowerment through sports and emphasize football’s unique role in instilling discipline, teamwork, resilience, and social cohesion among children.
 
-Organizers of the Joseniho Kids Football League described the partnership as a landmark achievement ahead of the second edition, noting that the collaboration will enhance opportunities for participating academies and further professionalize the league’s operations.
+// Organizers of the Joseniho Kids Football League described the partnership as a landmark achievement ahead of the second edition, noting that the collaboration will enhance opportunities for participating academies and further professionalize the league’s operations.
 
-The event is expected to draw parents, football enthusiasts, community leaders, and supporters of youth development as the second edition officially kicks off.`,
-featured: true,
-  },
+// The event is expected to draw parents, football enthusiasts, community leaders, and supporters of youth development as the second edition officially kicks off.`,
+// featured: true,
+//   },
+
+{
+  id: 1,
+  title: "JOSENINHO KIDS FOOTBALL LEAGUE ANNOUNCES DATE FOR 2026 CLOSING CEREMONY",
+  tag: "Breaking News",
+  author: "Admin",
+  date: "", // Add the official date
+  image: "", // Add the image path when available
+  excerpt: "Joseninho Kids Football League has officially announced the date for its 2026 Closing Ceremony, celebrating the successful conclusion of another exciting tournament season.",
+  content: `The organizers of the Joseninho Kids Football League have officially announced the date for the highly anticipated 2026 Closing Ceremony, which will mark the successful conclusion of another memorable edition of the competition.
+
+The ceremony will celebrate months of exciting football action, outstanding performances, and the remarkable growth of young talents who showcased exceptional skill, discipline, teamwork, and sportsmanship throughout the tournament.
+
+The event will feature the presentation of trophies, medals, individual awards, and special recognitions for outstanding players, coaches, participating academies, and partners whose contributions have made this year's competition a resounding success.
+
+Parents, football enthusiasts, community leaders, sponsors, and invited guests are expected to attend the celebration as the league reflects on another successful season dedicated to grassroots football development.
+
+Organizers stated that the Closing Ceremony will not only honor the achievements of the participating teams but also reaffirm the league's commitment to discovering, nurturing, and developing the next generation of football stars.`,
+
+  featured: true,
+},
  {
       id: 2,
       title: "Great memories...",
